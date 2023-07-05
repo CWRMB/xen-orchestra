@@ -93,12 +93,15 @@ async function main(createClient) {
     readOnly: opts.ro,
     syncStackTraces: true,
     transport: opts.transport || undefined,
+    watchEvents: false,
   })
   await xapi.connect()
 
   const repl = createRepl({
     prompt: `${xapi._humanId}> `,
   })
+
+  await fromCallback.call(repl, 'setupHistory', '/tmp/xen-api_history')
 
   {
     const ctx = repl.context
@@ -108,6 +111,10 @@ async function main(createClient) {
     ctx.find = predicate => find(xapi.objects.all, predicate)
     ctx.findAll = predicate => filter(xapi.objects.all, predicate)
     ctx.L = L
+
+    const { Cache, Watcher } = require('../events.js')
+    ctx.w = new Watcher(xapi)
+    ctx.c = new Cache(ctx.w)
 
     Object.defineProperties(ctx, getAllBoundDescriptors(xapi))
   }

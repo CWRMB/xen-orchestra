@@ -419,7 +419,7 @@ export class Xapi extends EventEmitter {
             signal: $cancelToken,
           }),
         {
-          when: error => error.response !== undefined && error.response.statusCode === 302,
+          when: error => error.response.statusCode === 302,
           onRetry: async error => {
             const response = error.response
             if (response === undefined) {
@@ -945,9 +945,6 @@ export class Xapi extends EventEmitter {
   }
 
   _setUrl(url) {
-    const { hostname } = url
-    url.hostnameRaw = hostname[0] === '[' ? hostname.slice(1, -1) : hostname
-
     this._humanId = `${this._auth.user ?? 'unknown'}@${url.hostname}`
     this._transport = this._createTransport({
       secureOptions: {
