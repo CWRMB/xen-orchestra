@@ -8,6 +8,7 @@
 > Users must be able to say: “Nice enhancement, I'm eager to test it”
 
 - [Netbox] Ability to synchronize XO users as Netbox tenants (PR [#7158](https://github.com/vatesfr/xen-orchestra/pull/7158))
+- [File Restore] API method `backupNg.mountPartition` to manually mount a backup disk on the XOA
 
 ### Bug fixes
 
@@ -33,11 +34,13 @@
 
 <!--packages-start-->
 
+- @vates/multi-key-map minor
 - @vates/nbd-client patch
 - @xen-orchestra/backups patch
 - @xen-orchestra/vmware-explorer patch
 - xo-server-netbox minor
 - xo-vmdk-to-vhd patch
 - xo-web patch
+- xo-server minor
 
 <!--packages-end-->
