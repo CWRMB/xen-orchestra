@@ -2268,7 +2268,7 @@ export const deleteSr = sr =>
 
 export const fetchSrStats = (sr, granularity) => _call('sr.stats', { id: resolveId(sr), granularity })
 
-export const forgetSr = sr => {
+export const forgetSr = sr => 
   confirm({
     title: _('srForgetModalTitle'),
     body: (
@@ -2280,14 +2280,13 @@ export const forgetSr = sr => {
       messageId: 'srForget',
     },
   }).then(() => _call('sr.forget', { id: resolveId(sr) }), noop);
-};
 
 export const forgetSrs = srs =>
   confirm({
     title: _('srsForgetModalTitle'),
     body: (
       <div className='text-warning'>
-        <p className='font-weight-bold'>{_('srsForgetModalMessage')}</p>
+        <p className='font-weight-bold'>{_('srsForgetModalMessage', { nSrs: size(srs) })}</p>
       </div>
     ),
     strongConfirm:  {

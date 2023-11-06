@@ -861,7 +861,7 @@ const messages = {
   srReconnectAll: 'Connect to all hosts',
   srDisconnectAll: 'Disconnect from all hosts',
   srForget: 'Forget this SR',
-  srsForget: 'Forget SRs',
+  srsForget: 'Forget SR{nSrs, plural, one {} other {s}}',
   srRemoveButton: 'Remove this SR',
   srNoVdis: 'No VDIs in this storage',
   srReclaimSpace: 'Reclaim freed space',
@@ -2374,7 +2374,7 @@ const messages = {
   srsForgetModalTitle: 'Forget selected SRs',
   srForgetModalMessage: "Are you sure you want to forget this SR? You will lose all the metadata for it, meaning all the links between the VDIs (disks) and their respective VMs. This operation cannot be undone.",
   srsForgetModalMessage:
-    "Are you sure you want to forget {nPbds, number} SR{nPbds, plural, one {} other {s}}? You will lose all the metadata for it, meaning all the links between the VDIs (disks) and their respective VMs. This operation cannot be undone.",
+  "Are you sure you want to forget {nSrs, number} SR{nSrs, plural, one {} other {s}}? You will lose all the metadata for it, meaning all the links between the VDIs (disks) and their respective VMs. This operation cannot be undone.",
   srAllDisconnected: 'Disconnected',
   srSomeConnected: 'Partially connected',
   srAllConnected: 'Connected',
