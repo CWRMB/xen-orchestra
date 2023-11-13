@@ -129,7 +129,9 @@ export default class BackupNg {
                     isMatchingVm(obj) &&
                     // don't match replicated VMs created by this very job otherwise
                     // they will be replicated again and again
-                    !('start' in obj.blockedOperations && obj.other['xo:backup:job'] === job.id)
+                    !('start' in obj.blockedOperations && obj.other['xo:backup:job'] === job.id) &&
+                    // don't match temporary VM created by health check
+                    obj.other['xo:backup:health-check'] !== 'running'
                 })(),
               })
             )
@@ -631,6 +633,9 @@ export default class BackupNg {
           await new HealthCheckVmBackup({
             restoredVm,
             xapi,
+            settings: {
+              additionnalVmConfig: { 'xo:backup:health-check': 'running' },
+            },
           }).run()
         } finally {
           await xapi.VM_destroy(restoredVm.$ref)

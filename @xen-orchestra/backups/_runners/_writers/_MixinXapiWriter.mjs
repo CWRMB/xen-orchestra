@@ -58,7 +58,7 @@ export const MixinXapiWriter = (BaseClass = Object) =>
               )
             }
             const healthCheckVm = xapi.getObject(healthCheckVmRef) ?? (await xapi.waitObject(healthCheckVmRef))
-
+            await healthCheckVm.update_other_config({ 'xo:backup:health-check': 'running' })
             await new HealthCheckVmBackup({
               restoredVm: healthCheckVm,
               xapi,

@@ -96,6 +96,9 @@ export const MixinRemoteWriter = (BaseClass = Object) =>
             metadata,
             srUuid,
             xapi,
+            settings: {
+              additionnalVmConfig: { 'xo:backup:health-check': 'running' },
+            },
           }).run()
           const restoredVm = xapi.getObject(restoredId)
           try {

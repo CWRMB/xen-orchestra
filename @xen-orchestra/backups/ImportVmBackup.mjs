@@ -16,20 +16,29 @@ async function resolveUuid(xapi, cache, uuid, type) {
   return cache.get(uuid)
 }
 export class ImportVmBackup {
-  constructor({ adapter, metadata, srUuid, xapi, settings: { newMacAddresses, mapVdisSrs = {} } = {} }) {
+  constructor({
+    adapter,
+    metadata,
+    srUuid,
+    xapi,
+    settings: { additionnalVmConfig, newMacAddresses, mapVdisSrs = {} } = {},
+  }) {
     this._adapter = adapter
-    this._importIncrementalVmSettings = { newMacAddresses, mapVdisSrs }
+    this._importIncrementalVmSettings = { additionnalVmConfig, newMacAddresses, mapVdisSrs }
     this._metadata = metadata
     this._srUuid = srUuid
     this._xapi = xapi
   }
 
   async #decorateIncrementalVmMetadata(backup) {
-    const { mapVdisSrs } = this._importIncrementalVmSettings
+    const { additionnalVmConfig, mapVdisSrs } = this._importIncrementalVmSettings
     const xapi = this._xapi
 
     const cache = new Map()
     const mapVdisSrRefs = {}
+    if (additionnalVmConfig !== undefined) {
+      backup.vm.other_config = { ...backup.vm.other_config, ...additionnalVmConfig }
+    }
     for (const [vdiUuid, srUuid] of Object.entries(mapVdisSrs)) {
       mapVdisSrRefs[vdiUuid] = await resolveUuid(xapi, cache, srUuid, 'SR')
     }

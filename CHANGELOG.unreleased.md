@@ -19,6 +19,7 @@
 - [Import/ESXi] Handle `Cannot read properties of undefined (reading 'perDatastoreUsage')` error when importing VM without storage (PR [#7168](https://github.com/vatesfr/xen-orchestra/pull/7168))
 - [Export/OVA] Handle export with resulting disk larger than 8.2GB (PR [#7183](https://github.com/vatesfr/xen-orchestra/pull/7183))
 - [Self Service] Fix error displayed after adding a VM to a resource set (PR [#7144](https://github.com/vatesfr/xen-orchestra/pull/7144))
+- [Backup/HealtCheck] Don't backup VM created by health check when using smart mode (PR [#7173](https://github.com/vatesfr/xen-orchestra/pull/7173))
 
 ### Packages to release
 
