@@ -1,8 +1,26 @@
 # ChangeLog
 
-## **5.88.0** (2023-10-31)
+## **5.88.1** (2023-11-07)
 
 <img id="latest" src="https://badgen.net/badge/channel/latest/yellow" alt="Channel: latest" />
+
+### Bug fixes
+
+- [Netbox] Fix VMs' `site` property being unnecessarily updated on some versions of Netbox (PR [#7145](https://github.com/vatesfr/xen-orchestra/pull/7145))
+- [Netbox] Fix "400 Bad Request" error (PR [#7153](https://github.com/vatesfr/xen-orchestra/pull/7153))
+- [Backup/Restore] Fix timeout after 5 minutes [#7052](https://github.com/vatesfr/xen-orchestra/issues/7052)
+- [Dashboard/Health] Empty VDIs are no longer considered orphans (PR [#7102](https://github.com/vatesfr/xen-orchestra/pull/7102))
+- [S3] Handle S3 without _Object Lock_ implementation (PR [#7157](https://github.com/vatesfr/xen-orchestra/pull/7157))
+
+### Released packages
+
+- @xen-orchestra/fs 4.1.2
+- @xen-orchestra/proxy 0.26.38
+- xo-server 5.125.2
+- xo-server-netbox 1.3.3
+- xo-web 5.127.2
+
+## **5.88.0** (2023-10-31)
 
 ### Highlights
 
@@ -21,7 +39,6 @@
 - [Proxy] Ability to open support tunnel on XO Proxy (PRs [#7126](https://github.com/vatesfr/xen-orchestra/pull/7126) [#7127](https://github.com/vatesfr/xen-orchestra/pull/7127))
 - [New network] Remove bonded PIFs from selector when creating network (PR [#7136](https://github.com/vatesfr/xen-orchestra/pull/7136))
 - Try to preserve current page across reauthentication (PR [#7013](https://github.com/vatesfr/xen-orchestra/pull/7013))
-- [XO-WEB/Forget SR] Changed the modal message and added a confirmation text to be sure the action is understood by the user (PR [#7155](https://github.com/vatesfr/xen-orchestra/pull/7155))
 
 ### Bug fixes
 

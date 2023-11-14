@@ -2269,27 +2269,19 @@ export const deleteSr = sr =>
 export const fetchSrStats = (sr, granularity) => _call('sr.stats', { id: resolveId(sr), granularity })
 
 export const forgetSr = sr =>
-confirm({
-  title: _('srForgetModalTitle'),
-  body: (
-      <p className='text-warning font-weight-bold'>{_('srForgetModalMessage', { nSrs: 1 })} 
-      {_('srForgetModalWarning')}</p>
-    ),
-    strongConfirm:  {
-      messageId: 'srForget',
-      values: { nSrs: 1 },
-    },
-  }).then(() => _call('sr.forget', { id: resolveId(sr) }), noop);
+  forgetSrs([sr])
 
 export const forgetSrs = srs =>
   confirm({
     title: _('srsForgetModalTitle'),
     body: (
-      <p className='text-warning font-weight-bold'>{_('srForgetModalMessage', { nSrs: srs.length })} 
-      {_('srForgetModalWarning')}</p>
+      <p className='text-warning font-weight-bold'>
+        {_('srForgetModalMessage', { nSrs: srs.length })} {' '}
+        {_('srForgetModalWarning')}
+      </p>
     ),
     strongConfirm:  {
-      messageId: 'srForget',
+      messageId: 'srsForget',
       values: { nSrs: srs.length }
     },
   }).then(() => Promise.all(map(resolveIds(srs), id => _call('sr.forget', { id }))), noop)

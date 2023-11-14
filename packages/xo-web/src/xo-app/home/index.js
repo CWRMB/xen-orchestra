@@ -276,7 +276,7 @@ const OPTIONS = {
         icon: 'sr-disconnect-all',
         tooltip: _('srDisconnectAll'),
       },
-      { handler: forgetSrs, icon: 'sr-forget', tooltip: _('srsForget') },
+      { handler: forgetSrs, icon: 'sr-forget', tooltip: _('srForget')  },
     ],
     Item: SrItem,
     showPoolsSelector: true,
