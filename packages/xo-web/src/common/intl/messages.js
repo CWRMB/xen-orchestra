@@ -860,8 +860,9 @@ const messages = {
   srRescan: 'Rescan all disks',
   srReconnectAll: 'Connect to all hosts',
   srDisconnectAll: 'Disconnect from all hosts',
-  srForget: 'Forget SRs',
-  srsForget: 'Forget {nSrs, number} SR{nSrs, plural, one {} other {s}}?',
+  srForget: 'Forget this SR',
+  srsForget: 'Forget SRs',
+  nSrsForget: 'Forget {nSrs, number} SR{nSrs, plural, one {} other {s}}',
   srRemoveButton: 'Remove this SR',
   srNoVdis: 'No VDIs in this storage',
   srReclaimSpace: 'Reclaim freed space',
@@ -2370,8 +2371,7 @@ const messages = {
   srDisconnectAllModalMessage: 'This will disconnect this SR from all its hosts.',
   srsDisconnectAllModalMessage:
     'This will disconnect each selected SR from its host (local SR) or from every hosts of its pool (shared SR).',
-  srForgetModalTitle: 'Forget SR',
-  srsForgetModalTitle: 'Forget selected SRs',
+  srForgetModalTitle: 'Forget {nSrs, plural, one {this} other {these}} SR {nSrs, plural, one {} other {s}}',
   srForgetModalMessage: 'Are you sure you want to forget {nSrs, number} SR{nSrs, plural, one {} other {s}}?',
   srForgetModalWarning:
     'You will lose all the metadata for it, meaning all the links between the VDIs (disks) and their respective VMs. This operation cannot be undone.',

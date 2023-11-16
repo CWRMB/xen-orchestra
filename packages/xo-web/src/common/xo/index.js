@@ -2273,15 +2273,15 @@ export const forgetSr = sr =>
 
 export const forgetSrs = srs =>
   confirm({
-    title: _('srsForgetModalTitle'),
+    title: _('srForgetModalTitle', { nSrs: srs.length }),
     body: (
       <p className='text-warning font-weight-bold'>
-        {_('srForgetModalMessage', { nSrs: srs.length })} {' '}
+        {_('srForgetModalMessage', { nSrs: srs.length })}{' '}
         {_('srForgetModalWarning')}
       </p>
     ),
     strongConfirm:  {
-      messageId: 'srsForget',
+      messageId: 'nSrsForget',
       values: { nSrs: srs.length }
     },
   }).then(() => Promise.all(map(resolveIds(srs), id => _call('sr.forget', { id }))), noop)
