@@ -8,6 +8,7 @@
 > Users must be able to say: “Nice enhancement, I'm eager to test it”
 
 - [Netbox] Ability to synchronize XO users as Netbox tenants (PR [#7158](https://github.com/vatesfr/xen-orchestra/pull/7158))
+- [Task] Show the related SR on the Garbage Collector Task ( vdi coalescing) (PR [#7189](https://github.com/vatesfr/xen-orchestra/pull/7189))
 
 ### Bug fixes
 
@@ -38,6 +39,6 @@
 - @xen-orchestra/vmware-explorer patch
 - xo-server-netbox minor
 - xo-vmdk-to-vhd patch
-- xo-web patch
+- xo-web minor
 
 <!--packages-end-->
