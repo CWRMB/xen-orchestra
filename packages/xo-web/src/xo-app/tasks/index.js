@@ -66,15 +66,21 @@ const FILTERS = {
 
 @connectStore(() => ({
   host: createGetObject((_, props) => props.item.$host),
+  appliesTo: createGetObject((_, props) => props.item.applies_to),
 }))
 export class TaskItem extends Component {
   render() {
-    const { host, item: task } = this.props
-
+    const { appliesTo, host, item: task } = this.props
+    const showDesc = task.name_description && task.ame_label !== 'Garbage Collection' // garbage colleciton task has an uuid in the desc
     return (
       <div>
-        {task.name_label} ({task.name_description && `${task.name_description} `}
+        {task.name_label} ({showDesc && `${task.name_description} `}
         on {host ? <Link to={`/hosts/${host.id}`}>{host.name_label}</Link> : `unknown host − ${task.$host}`})
+        {appliesTo && (
+          <span>
+            , applies to <Link to={`/srs/${appliesTo.id}`}>{appliesTo.name_label}</Link>
+          </span>
+        )}
         {task.disappeared === undefined && ` ${Math.round(task.progress * 100)}%`}
       </div>
     )
