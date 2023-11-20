@@ -31,6 +31,7 @@ const SR_COLUMNS = [
     name: _('srName'),
     itemRenderer: storage => (
       <Link to={`/srs/${storage.id}`}>
+        {storage.garbageCollectionProgress !== undefined && `[coalescing ${storage.garbageCollectionProgress * 100}%]`}
         <Text onChange={nameLabel => editSr(storage.id, { nameLabel })} useLongClick value={storage.nameLabel} />
       </Link>
     ),
@@ -113,14 +114,14 @@ const SR_ACTIONS = [
 export default connectStore(() => {
   const pbds = createGetObjectsOfType('PBD').pick((_, props) => props.host.$PBDs)
   const srs = createGetObjectsOfType('SR').pick(createSelector(pbds, pbds => map(pbds, pbd => pbd.SR)))
+  const tasks = createGetObjectsOfType('task').filter(task => task.applies_to)
 
-  const storages = createSelector(pbds, srs, (pbds, srs) =>
+  const storages = createSelector(pbds, srs, tasks, (pbds, srs, tasks) =>
     map(
       filter(pbds, pbd => srs[pbd.SR] !== undefined),
       pbd => {
         const sr = srs[pbd.SR]
         const { physical_usage: usage, size } = sr
-
         return {
           attached: pbd.attached,
           pbdDeviceConfig: pbd.device_config,
@@ -132,6 +133,7 @@ export default connectStore(() => {
           shared: isSrShared(sr),
           size: size > 0 ? size : 0,
           usagePercentage: size > 0 && Math.round((100 * usage) / size),
+          garbageCollectionProgress: Object.values(tasks).find(({ applies_to }) => applies_to === sr.id)?.progress,
         }
       }
     )
